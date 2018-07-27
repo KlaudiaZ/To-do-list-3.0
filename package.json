@@ -1,0 +1,35 @@
+{
+    "name": "starter",
+    "version": "1.0.0",
+    "description": "General-purpose starter with TS & HMR",
+    "private": true,
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "webpack --mode=production",
+        "start": "webpack-dev-server --hot --inline --open --mode=development"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/KlaudiaZ/Webpack-starter.git"
+    },
+    "author": "Klaudia Zajac",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/KlaudiaZ/Webpack-starter/issues"
+    },
+    "homepage": "https://github.com/KlaudiaZ/Webpack-starter#readme",
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.3",
+        "babel-loader": "^7.1.5",
+        "babel-preset-env": "^1.7.0",
+        "css-loader": "^1.0.0",
+        "jquery": "^3.3.1",
+        "style-loader": "^0.21.0",
+        "ts-loader": "^4.4.2",
+        "typescript": "^2.9.2",
+        "webpack": "^4.16.1",
+        "webpack-cli": "^3.1.0",
+        "webpack-dev-server": "^3.1.4"
+    }
+}
