@@ -63,4 +63,21 @@
 
             return false;
         }
+
+        public function deleteTask() {
+            $sql = 'DELETE FROM todolist WHERE id=:id';
+            $stmt = $this->conn->prepare($sql);
+
+            $this->id = htmlspecialchars(strip_tags($this->id));
+
+            $stmt->bindParam(':id', $this->id);
+
+            if($stmt->execute()) {
+                return true;
+            }
+
+            printf("Error: %s.\n", $stmt->error);
+
+            return false;
+        }
     }
