@@ -1,7 +1,7 @@
 <?php
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
-    header('Access-Control-Allow-Methods: POST');
+    header('Access-Control-Allow-Methods: PUT');
     header('Access-Control-Allow-Headers: Content-Type');
     header('Access-Control-Allow-Headers: Authorization');
     header('Access-Control-Allow-Headers: X-Requested-Width');
@@ -13,16 +13,19 @@
         $db = $database->connect();
 
         $stmt = new ToDoList($db);
+
         $data = json_decode(file_get_contents("php://input"));
 
+        $stmt->id = $data->id;
         $stmt->title = $data->title;
         $stmt->details = $data->details;
         $stmt->priority = $data->priority;
-
-        if ($stmt->addTask()) {
-            $msg = array('message' => 'Task Added');
+        $stmt->is_done = $data->is_done;
+        
+        if ($stmt->updateTask()) {
+            $msg = array('message' => 'Task Updated');
             echo json_encode($msg);
         } else {
-            $msg = array('message' => 'Task Not Added');
+            $msg = array('message' => 'Task Not Updated');
             echo json_encode($msg);
         }
