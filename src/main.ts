@@ -1,7 +1,8 @@
 import './styles/styles.css';
+import * as $ from 'jquery';
 import { init } from './index';
 
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("TypeScript reporting in!");
-    //init();
-});
+$(() => {
+    console.log('TypeScript & jQuery reporting in!');
+    init();
+})
