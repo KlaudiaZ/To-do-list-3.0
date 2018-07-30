@@ -11,3 +11,17 @@ export const getListFromServer = () => {
             alert(error);
         });
 }
+
+export const sendTaskToServer = (task) => {
+    axios.post(config.url.addTask, JSON.stringify({
+        title: task.title,
+        details: task.details,
+        priority: task.priority
+    }))
+        .then(() => {
+
+        })
+        .catch((error) => {
+            alert(error);
+        });
+}
