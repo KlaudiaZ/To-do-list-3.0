@@ -1,5 +1,3 @@
-import * as $ from 'jquery';
-
 const server = "http://localhost:3000/FRONT_END/To-do-list-3.0/server/api/";
 
 export default {
