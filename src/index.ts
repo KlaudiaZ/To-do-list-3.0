@@ -1,9 +1,6 @@
-import Task from './task';
-import List from './list';
-
-let list = new List;
+import { getTasks } from './modules/getTasks';
 
 export const init = () => {
     console.log('Initializing...')
-    list.getTasksFromServer();
+    getTasks();
 }
