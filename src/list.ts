@@ -38,6 +38,25 @@ class List {
             xhr.send(JSON.stringify({ id: id }));
         });
     }
+
+    static updateTask(task: object) {
+        return new Promise((resolve, reject) => {
+            let xhr = new XMLHttpRequest();
+            const method = 'PUT';
+            const url = config.url.updateTask;
+            const async = true;
+
+            xhr.open(method, url, async);
+
+            xhr.onload = function () {
+                resolve(JSON.parse(this.response));
+            }
+            xhr.onerror = function () {
+                reject('Error: failed to update the task.');
+            }
+            xhr.send(JSON.stringify(task));
+        })
+    }
 }
 
 export default List;

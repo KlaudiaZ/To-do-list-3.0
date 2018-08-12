@@ -2,9 +2,8 @@ import { renderAndBindTaskList } from './utils/utils';
 import List from './list';
 
 
-export default {
+const handle = {
     editTask: (id: number, tasks: any) => {
-
         const task = tasks.find((task: any) => {
             return task.id === id;
         });
@@ -24,5 +23,22 @@ export default {
             .catch((err) => {
                 console.log(err);
             });
+    },
+
+    markTaskAsDone: async function (id: number, tasks: any) {
+        const task = tasks.find((task: any) => {
+            return task.id === id;
+        });
+        task.isDone = "1";
+        await List.updateTask(task)
+            .then((response) => {
+                console.log(response);
+                renderAndBindTaskList();
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }
-}
+};
+
+export default handle;
