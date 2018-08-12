@@ -14,7 +14,7 @@ class Task {
         this.isDone = isDone;
     }
 
-    render(index: number) {
+    render(index: number, incomplete: any, complete: any) {
         const task = document.createElement('tr');
         if (this.isDone == false) {
             task.setAttribute('class', `${config.priority[this.priority]}`);
@@ -27,7 +27,7 @@ class Task {
                 <td class="edit" data-id="${this.id}">(edit icon)</td>
                 <td class="remove" data-id="${this.id}">(remove icon)</td>
             `;
-            document.getElementById('tasks').appendChild(task);
+            incomplete.appendChild(task);
             return false;
         } else {
             task.innerHTML = `
@@ -35,7 +35,7 @@ class Task {
                     ${this.title}
                 </li>
             `;
-            document.getElementById('completed').appendChild(task);
+            complete.appendChild(task);
             return true;
         }
     }

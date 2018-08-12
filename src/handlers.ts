@@ -1,4 +1,6 @@
+import { renderAndBindTaskList } from './utils/utils';
 import List from './list';
+
 
 export default {
     editTask: (id: number, tasks: any) => {
@@ -17,7 +19,7 @@ export default {
         await List.removeTaskFromServer(id)
             .then((response) => {
                 console.log(response);
-                location = location;
+                renderAndBindTaskList();
             })
             .catch((err) => {
                 console.log(err);
