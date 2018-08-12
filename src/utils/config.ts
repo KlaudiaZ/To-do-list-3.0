@@ -1,9 +1,5 @@
 const server = "http://localhost:3000/FRONT_END/To-do-list-3.0/server/api/";
 
-interface priority {
-    [key: number]: string;
-}
-
 const config: any = {
     url: {
         getList: server + "getList.php",

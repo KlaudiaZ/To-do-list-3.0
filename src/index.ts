@@ -25,7 +25,7 @@ const bindRemoveTaskButton = (taskList: object) => {
     btns.forEach((btn) => {
         btn.addEventListener('click', function () {
             const id: number = this.getAttribute('data-id');
-            handle.removeTask(id, taskList);
+            handle.removeTask(id);
         });
     });
 }
