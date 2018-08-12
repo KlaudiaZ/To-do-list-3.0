@@ -16,17 +16,28 @@ class Task {
 
     render(index: number) {
         const task = document.createElement('tr');
-        task.setAttribute('class', `${config.priority[this.priority]}`);
-        task.innerHTML = `
-            <th scope="row">${index + 1}</th>
-            <td>${this.title}</td>
-            <td>${this.details}</td>
-            <td>${this.priority}</td>
-            <td><input class="form-check-input" type="checkbox"></td>
-            <td>(edit icon)</td>
-            <td>(remove icon)</td>
-        `;
-        document.getElementById('tasks').appendChild(task);
+        if (this.isDone == false) {
+            task.setAttribute('class', `${config.priority[this.priority]}`);
+            task.innerHTML = `
+                <th scope="row">${index}</th>
+                <td>${this.title}</td>
+                <td>${this.details}</td>
+                <td>${this.priority}</td>
+                <td><input class="form-check-input" type="checkbox"></td>
+                <td class="edit" data-id="${this.id}">(edit icon)</td>
+                <td class="remove" data-id="${this.id}">(remove icon)</td>
+            `;
+            document.getElementById('tasks').appendChild(task);
+            return false;
+        } else {
+            task.innerHTML = `
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    ${this.title}
+                </li>
+            `;
+            document.getElementById('completed').appendChild(task);
+            return true;
+        }
     }
 }
 
