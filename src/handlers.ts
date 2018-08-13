@@ -1,7 +1,5 @@
 import List from './list';
-import Utils from './utils/utils';
-
-const utils = new Utils;
+import utils from './utils/utils';
 
 const handle = {
     editTaskMode: (id: number, tasks: any) => {
@@ -17,6 +15,7 @@ const handle = {
             .then((response) => {
                 console.log(response);
                 utils.renderAndBindTaskList();
+                utils.clearForm();
             })
             .catch((err) => {
                 console.log(err);

@@ -14,6 +14,7 @@ const bind = {
     updateButton: () => {
         const update = document.getElementById('submit');
         update.addEventListener('click', (e) => {
+            e.preventDefault();
             handle.updateTask();
         });
     },
