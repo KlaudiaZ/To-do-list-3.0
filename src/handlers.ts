@@ -1,13 +1,26 @@
-import { renderAndBindTaskList } from './utils/utils';
 import List from './list';
+import Utils from './utils/utils';
 
+const utils = new Utils;
 
 const handle = {
-    editTask: (id: number, tasks: any) => {
+    editTaskMode: (id: number, tasks: any) => {
         const task = tasks.find((task: any) => {
             return task.id === id;
         });
-        console.log(task)
+        utils.setInputValues(task);
+    },
+
+    updateTask: () => {
+        const task = utils.getInputValues();
+        List.updateTask(task)
+            .then((response) => {
+                console.log(response);
+                utils.renderAndBindTaskList();
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     },
 
     addTask: () => {
@@ -18,7 +31,7 @@ const handle = {
         await List.removeTaskFromServer(id)
             .then((response) => {
                 console.log(response);
-                renderAndBindTaskList();
+                utils.renderAndBindTaskList();
             })
             .catch((err) => {
                 console.log(err);
@@ -33,7 +46,7 @@ const handle = {
         await List.updateTask(task)
             .then((response) => {
                 console.log(response);
-                renderAndBindTaskList();
+                utils.renderAndBindTaskList();
             })
             .catch((err) => {
                 console.log(err);

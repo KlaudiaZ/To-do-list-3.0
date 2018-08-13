@@ -6,8 +6,15 @@ const bind = {
         btns.forEach((btn) => {
             btn.addEventListener('click', function () {
                 const id: number = this.parentElement.getAttribute('data-id');
-                handle.editTask(id, taskList);
+                handle.editTaskMode(id, taskList);
             });
+        });
+    },
+
+    updateButton: () => {
+        const update = document.getElementById('submit');
+        update.addEventListener('click', (e) => {
+            handle.updateTask();
         });
     },
 
@@ -29,6 +36,10 @@ const bind = {
                 handle.markTaskAsDone(id, taskList);
             });
         });
+    },
+
+    addTaskButton: () => {
+
     }
 }
 

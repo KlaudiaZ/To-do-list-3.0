@@ -1,8 +1,11 @@
-import { renderAndBindTaskList } from './utils/utils';
+import Utils from './utils/utils';
+import bind from './binds';
 
+const utils = new Utils;
 
 export const init = () => {
     console.log('Initializing...');
-    renderAndBindTaskList();
+    utils.renderAndBindTaskList();
+    bind.updateButton();
 }
 
