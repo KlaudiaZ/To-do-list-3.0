@@ -3,7 +3,7 @@ import bind from './binds';
 
 export const init = () => {
     console.log('Initializing...');
+    // utils.clearForm();
     utils.renderAndBindTaskList();
-    bind.updateButton();
+    bind.addTaskButton();
 }
-

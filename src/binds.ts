@@ -1,4 +1,6 @@
-import handle from './handlers';
+import { removeTask } from './modules/removeTask';
+import { editTaskMode, updateTask, markTaskAsDone } from './modules/editTask';
+import { addTask } from './modules/addTask';
 
 const bind = {
     editTaskButton: (taskList: object) => {
@@ -6,7 +8,7 @@ const bind = {
         btns.forEach((btn) => {
             btn.addEventListener('click', function () {
                 const id: number = this.parentElement.getAttribute('data-id');
-                handle.editTaskMode(id, taskList);
+                editTaskMode(id, taskList);
             });
         });
     },
@@ -15,7 +17,7 @@ const bind = {
         const update = document.getElementById('submit');
         update.addEventListener('click', (e) => {
             e.preventDefault();
-            handle.updateTask();
+            updateTask();
         });
     },
 
@@ -24,7 +26,7 @@ const bind = {
         btns.forEach((btn) => {
             btn.addEventListener('click', function () {
                 const id: number = this.parentElement.getAttribute('data-id');
-                handle.removeTask(id);
+                removeTask(id);
             });
         });
     },
@@ -34,13 +36,17 @@ const bind = {
         btns.forEach((btn) => {
             btn.addEventListener('click', function () {
                 const id: number = this.parentElement.parentElement.getAttribute('data-id');
-                handle.markTaskAsDone(id, taskList);
+                markTaskAsDone(id, taskList);
             });
         });
     },
 
     addTaskButton: () => {
-
+        const add = document.getElementById('submit');
+        add.addEventListener('click', (e) => {
+            e.preventDefault();
+            addTask();
+        });
     }
 }
 

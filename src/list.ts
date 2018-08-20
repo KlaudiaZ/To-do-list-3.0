@@ -55,7 +55,26 @@ class List {
                 reject('Error: failed to update the task.');
             }
             xhr.send(JSON.stringify(task));
-        })
+        });
+    }
+
+    static addTask(task: object) {
+        return new Promise((resolve, reject) => {
+            let xhr = new XMLHttpRequest();
+            const method = 'POST';
+            const url = config.url.addTask;
+            const async = true;
+
+            xhr.open(method, url, async);
+
+            xhr.onload = function () {
+                resolve(JSON.parse(this.response));
+            }
+            xhr.onerror = function () {
+                reject('Error: failed to add new task.');
+            }
+            xhr.send(JSON.stringify(task));
+        });
     }
 }
 

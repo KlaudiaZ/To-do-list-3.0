@@ -1,8 +1,6 @@
 import { getTasks } from '../modules/getTasks';
 import bind from '../binds';
 
-
-
 export default {
     findFormElements: function () {
         return {
@@ -11,6 +9,13 @@ export default {
             priority: (<HTMLInputElement>document.getElementById('priority')),
             btn: (<HTMLInputElement>document.getElementById('submit'))
         }
+    },
+
+    clearForm: function () {
+        this.findFormElements().title.value = "";
+        this.findFormElements().details.value = "";
+        this.findFormElements().priority.value = 1;
+        this.findFormElements().btn.removeEventListener('click', bind.addTaskButton());
     },
 
     renderAndBindTaskList: () => {
@@ -35,11 +40,5 @@ export default {
         this.findFormElements().priority.value = task.priority;
         this.findFormElements().btn.setAttribute('data-id', task.id);
         this.findFormElements().btn.innerHTML = "Update";
-    },
-
-    clearForm: function () {
-        this.findFormElements().title.value = "";
-        this.findFormElements().details.value = "";
-        this.findFormElements().priority.value = 1;
     }
 }

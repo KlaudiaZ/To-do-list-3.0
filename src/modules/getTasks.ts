@@ -1,4 +1,4 @@
-import List from '../list';
+import List from '../List';
 import Task from '../task';
 
 export async function getTasks() {
