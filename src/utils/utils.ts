@@ -1,5 +1,8 @@
+import Form from '../Form';
 import { getTasks } from '../modules/getTasks';
 import bind from '../binds';
+
+
 
 export default {
     findFormElements: function () {
@@ -11,14 +14,8 @@ export default {
         }
     },
 
-    clearForm: function () {
-        this.findFormElements().title.value = "";
-        this.findFormElements().details.value = "";
-        this.findFormElements().priority.value = 1;
-        this.findFormElements().btn.removeEventListener('click', bind.addTaskButton());
-    },
-
     renderAndBindTaskList: () => {
+        // const form = new Form({ mode: 'Add' });
         getTasks().then((taskList) => {
             bind.editTaskButton(taskList);
             bind.removeTaskButton();

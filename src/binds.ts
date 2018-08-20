@@ -1,6 +1,5 @@
 import { removeTask } from './modules/removeTask';
-import { editTaskMode, updateTask, markTaskAsDone } from './modules/editTask';
-import { addTask } from './modules/addTask';
+import { editTaskMode, markTaskAsDone } from './modules/editTask';
 
 const bind = {
     editTaskButton: (taskList: object) => {
@@ -10,14 +9,6 @@ const bind = {
                 const id: number = this.parentElement.getAttribute('data-id');
                 editTaskMode(id, taskList);
             });
-        });
-    },
-
-    updateButton: () => {
-        const update = document.getElementById('submit');
-        update.addEventListener('click', (e) => {
-            e.preventDefault();
-            updateTask();
         });
     },
 
@@ -40,14 +31,6 @@ const bind = {
             });
         });
     },
-
-    addTaskButton: () => {
-        const add = document.getElementById('submit');
-        add.addEventListener('click', (e) => {
-            e.preventDefault();
-            addTask();
-        });
-    }
 }
 
 export default bind;

@@ -1,5 +1,5 @@
 import List from '../List';
-import Task from '../task';
+import Task from '../Task';
 
 export async function getTasks() {
     await List.getTasksFromServer()

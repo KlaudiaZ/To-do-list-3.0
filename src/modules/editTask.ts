@@ -8,7 +8,7 @@ export const editTaskMode = (id: number, tasks: any) => {
     utils.setInputValues(task);
 }
 
-export const updateTask = () => {
+export const editTask = () => {
     const task = utils.getInputValues();
     List.updateTask(task)
         .then((response) => {
