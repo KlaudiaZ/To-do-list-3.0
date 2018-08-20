@@ -1,19 +1,13 @@
-import utils from '../utils/utils';
+import Server from '../Server';
 import List from '../List';
 
-export const editTaskMode = (id: number, tasks: any) => {
-    const task = tasks.find((task: any) => {
-        return task.id === id;
-    });
-    utils.setInputValues(task);
-}
+export const editTask = (task: object) => {
 
-export const editTask = () => {
-    const task = utils.getInputValues();
-    List.updateTask(task)
+    Server.updateTask(task)
         .then((response) => {
+            const list = new List;
             console.log(response);
-            utils.renderAndBindTaskList();
+            list.render();
         })
         .catch((err) => {
             console.log(err);
@@ -21,14 +15,16 @@ export const editTask = () => {
 }
 
 export const markTaskAsDone = function (id: number, tasks: any) {
+
     const task = tasks.find((task: any) => {
         return task.id === id;
     });
     task.isDone = "1";
-    List.updateTask(task)
+    Server.updateTask(task)
         .then((response) => {
             console.log(response);
-            utils.renderAndBindTaskList();
+            const list = new List;
+            list.render();
         })
         .catch((err) => {
             console.log(err);

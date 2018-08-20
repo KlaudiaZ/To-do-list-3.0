@@ -1,8 +1,8 @@
-import List from '../List';
+import Server from '../Server';
 import Task from '../Task';
 
 export async function getTasks() {
-    await List.getTasksFromServer()
+    await Server.getTasksFromServer()
         .then(function (items: object[]) {
             let i: number = 1;
             const incomplete: any = document.getElementById('tasks');
@@ -17,5 +17,5 @@ export async function getTasks() {
         .catch((err) => {
             console.log(err);
         });
-    return List.getTasksFromServer();
+    return Server.getTasksFromServer();
 }

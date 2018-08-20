@@ -1,13 +1,16 @@
+import Server from '../Server';
 import List from '../List';
-import utils from '../utils/utils';
 
-export const addTask = () => {
+export const addTask = (task: object) => {
+    const list = new List;
+
     console.log('adding...');
-    const task = utils.getInputValues();
-    List.addTask(task)
+
+
+    Server.addTask(task)
         .then((response) => {
             console.log(response);
-            utils.renderAndBindTaskList();
+            list.render();
         })
         .catch((err) => {
             console.log(err);

@@ -1,14 +1,8 @@
 import Form from './Form';
-import utils from './utils/utils';
-import bind from './binds';
+import List from './List';
 
-
-export const init = () => {
+export const init = function () {
     console.log('Initializing...');
-    const form = new Form;
-
-    form.render({ mode: 'Add' });
-
-    utils.renderAndBindTaskList();
-    // bind.addTaskButton();
+    const list = new List;
+    const form = new Form(true);
 }

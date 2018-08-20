@@ -1,11 +1,13 @@
+import Server from '../Server';
 import List from '../List';
-import utils from '../utils/utils';
 
 export const removeTask = function (id: number) {
-    List.removeTaskFromServer(id)
+    const list = new List;
+
+    Server.removeTaskFromServer(id)
         .then((response) => {
             console.log(response);
-            utils.renderAndBindTaskList();
+            list.render();
         })
         .catch((err) => {
             console.log(err);
