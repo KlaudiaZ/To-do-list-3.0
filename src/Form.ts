@@ -59,6 +59,17 @@ class Form {
         return { title, details, priority, isDone: 0, id }
     }
 
+    private renderCancelButton() {
+        const cancel = document.createElement('button');
+        cancel.classList.add('btn', 'btn-primary', 'col-4', 'h-25');
+        cancel.innerHTML = 'Cancel';
+        cancel.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.render({ mode: 'Add', task: this.defaultTask })
+        });
+        this.container.appendChild(cancel);
+    }
+
     public render(prop: RenderOptions) {
         this.container.innerHTML = '';
 
@@ -91,7 +102,13 @@ class Form {
         this.container.appendChild(form);
 
         this.setInputs();
-        prop.mode === 'Add' ? this.bindAdd() : this.bindEdit();
+
+        if (prop.mode === 'Add') {
+            this.bindAdd();
+        } else {
+            this.bindEdit();
+            this.renderCancelButton();
+        }
     }
 
     public enableEdit(task: object) {
