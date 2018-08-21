@@ -5,3 +5,5 @@ An object-oriented version of the app.
 - Bootstrap 4 (Bootswatch)
 - TypeScript
 - PHP (for API)
+
+The current version of the app does not support token authorization.
