@@ -21,7 +21,7 @@
         $stmt->title = $data->title;
         $stmt->details = $data->details;
         $stmt->priority = $data->priority;
-        $stmt->is_done = $data->is_done;
+        $stmt->isDone = $data->isDone;
         
         if ($stmt->updateTask()) {
             $msg = array('message' => 'Task Updated');

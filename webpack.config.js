@@ -5,7 +5,9 @@ module.exports = {
     devtool: 'inline-source-map',
     output: {
         filename: 'main.js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
+        library: "my-library",
+        libraryTarget: "umd"
     },
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
@@ -16,7 +18,7 @@ module.exports = {
     },
     module: {
         rules: [{
-                test: /\.tsx$/,
+                test: /\.ts|\.tsx$/,
                 use: 'ts-loader',
                 exclude: /node_modules/
             },
@@ -33,7 +35,7 @@ module.exports = {
                     exclude: /node_modules/,
                     loader: "babel-loader",
                     options: {
-                        "presets": ["env", "es2015"]
+                        "presets": ["env"]
                     }
                 }]
             }

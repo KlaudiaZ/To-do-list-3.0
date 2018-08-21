@@ -1,43 +1,88 @@
-import * as $ from 'jquery';
-import config from './config';
-import { sendTaskToServer } from './serverComm';
+import Form from './Form';
+import { getTasks } from './modules/getTasks';
+import { markTaskAsDone, undoCompleted } from './modules/editTask';
+import { removeTask, removeCompleted } from './modules/removeTask';
 
-export const renderList = (tasks) => {
-    console.log(tasks);
-    tasks.forEach((task, index) => {
-        if (task.is_done != 1) {
-            $('#tasks').append(`
-                <tr class=${config.priority[task.priority]}>
-                    <th scope="row">${index + 1}</th>
-                    <td>${task.title}</td>
-                    <td>${task.details}</td>
-                    <td>${task.priority}</td>
-                    <td><input class="form-check-input" type="checkbox"></td>
-                    <td>(edit icon)</td>
-                    <td>(remove icon)</td>
-                </tr>
-        `);
-        } else {
-            $('#completed').append(`
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                ${task.title}
-                </li>
-            `);
-        }
-    });
-}
+class List {
+    private form = new Form;
+    private completed: number[] = [];
 
-export const bindAddButton = () => {
-    $('#submit').click((e) => {
-        addNewTask();
-    });
-}
-
-const addNewTask = () => {
-    const task = {
-        title: $('#title').val(),
-        details: $('#details').val(),
-        priority: $('#priority').val()
+    constructor(init?: boolean) {
+        if (init) this.render();
     }
-    sendTaskToServer(task);
+
+    private storeCompleted() {
+        const tasks = document.querySelectorAll('.completed');
+        tasks.forEach((task) => {
+            const id: number = parseInt(task.getAttribute('data-id'));
+            this.completed.push(id);
+        })
+    }
+
+    private bindEdit(taskList: any) {
+        const that = this;
+        const btns = document.querySelectorAll('.edit');
+        btns.forEach((btn) => {
+            btn.addEventListener('click', function () {
+                const id: number = this.parentElement.getAttribute('data-id');
+                const task = taskList.find((task: any) => {
+                    return task.id === id;
+                });
+                that.form.enableEdit(task);
+            });
+        });
+    }
+
+    private bindRemove() {
+        const btns = document.querySelectorAll('.remove');
+        btns.forEach((btn) => {
+            btn.addEventListener('click', function () {
+                const id: number = this.parentElement.getAttribute('data-id');
+                removeTask(id);
+            });
+        });
+    }
+
+    private bindCheckbox(taskList: object) {
+        const btns = document.querySelectorAll('.form-check-input');
+        btns.forEach((btn) => {
+            btn.addEventListener('click', function () {
+                const id: number = this.parentElement.parentElement.getAttribute('data-id');
+                markTaskAsDone(id, taskList);
+            });
+        });
+    }
+
+    private bindCompletedTasks(taskList: object) {
+        const btns = document.querySelectorAll('.completed');
+        btns.forEach((btn) => {
+            btn.addEventListener('click', function () {
+                const id: number = this.getAttribute('data-id');
+                undoCompleted(id, taskList);
+            });
+        });
+    }
+
+    private renderClearButton() {
+        const clear = document.createElement('button');
+        clear.classList.add('btn', 'btn-primary', 'col-4', 'h-25');
+        clear.innerHTML = 'Clear';
+        clear.addEventListener('click', (e) => {
+            removeCompleted(this.completed);
+        });
+        document.getElementById('completed').appendChild(clear);
+    }
+
+    public render() {
+        getTasks().then((taskList) => {
+            this.bindEdit(taskList);
+            this.bindRemove();
+            this.bindCheckbox(taskList);
+            this.bindCompletedTasks(taskList);
+            this.storeCompleted();
+            this.renderClearButton();
+        });
+    }
 }
+
+export default List;
