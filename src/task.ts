@@ -25,14 +25,14 @@ class Task {
                 <td>${this.details}</td>
                 <td>${this.priority}</td>
                 <td><input class="form-check-input" type="checkbox"></td>
-                <td class="edit">(edit icon)</td>
-                <td class="remove">(remove icon)</td>
+                <td class="edit"><img src="/img/pencil_and_paper-512.png" width="24" height="24"></td>
+                <td class="remove"><img src="/img/Trash_Can-512.png" width="24" height="24"></td>
             `;
             incomplete.appendChild(task);
             return false;
         } else {
             task.innerHTML = `
-                <li class="list-group-item d-flex justify-content-between align-items-center">
+                <li class="list-group-item d-flex justify-content-between align-items-center completed" data-id="${this.id}">
                     ${this.title}
                 </li>
             `;
