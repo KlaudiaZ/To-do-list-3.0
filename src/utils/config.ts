@@ -1,4 +1,4 @@
-const server = "http://localhost:3000/FRONT_END/To-do-list-3.0/server/api/";
+const server = "https://todoapihost.000webhostapp.com/api/";
 
 const config: any = {
     url: {
