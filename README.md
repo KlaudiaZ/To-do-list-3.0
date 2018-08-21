@@ -7,3 +7,5 @@ An object-oriented version of the app.
 - PHP (for API)
 
 The current version of the app does not support token authorization.
+
+A slightly modified branch to support connection with an external server.
