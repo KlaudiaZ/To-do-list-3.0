@@ -8,4 +8,4 @@ An object-oriented version of the app.
 
 The current version of the app does not support token authorization.
 
-A slightly modified branch to support connection with an external server.
+A slightly modified branch that connects to an external server.
