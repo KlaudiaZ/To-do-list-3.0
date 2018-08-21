@@ -13,3 +13,7 @@ To run the application locally:
 - download 'dist' and 'server' folders, place in a server-supported directory
 - in /server/config/Database.php change username and password to match your local DB
 - run index.html
+
+
+Known bugs:
+- editing and removing task doesn't work in online version on GH Pages (and I'm still looking into the reason why this is happening)
