@@ -2,6 +2,7 @@ import Server from '../Server';
 import Task from '../Task';
 
 export async function getTasks() {
+    let result: object[] = [];
     await Server.getTasksFromServer()
         .then(function (items: object[]) {
             let i: number = 1;
@@ -13,9 +14,12 @@ export async function getTasks() {
                 item = new Task(item.id, item.title, item.details, item.priority, item.isDone);
                 !item.render(i, incomplete, complete) ? i++ : i;
             });
+            result = items;
         })
         .catch((err) => {
             console.log(err);
         });
-    return Server.getTasksFromServer();
+    return new Promise((resolve) => {
+        resolve(result);
+    });
 }
